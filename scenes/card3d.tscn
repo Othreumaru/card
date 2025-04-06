@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://fb4xlgxnfv3m"]
+
+[ext_resource type="Script" uid="uid://s2ico5n7bgnt" path="res://scripts/card_3d.gd" id="1_cdfvb"]
+[ext_resource type="Texture2D" uid="uid://k3ekodjrfv3b" path="res://textures/PlayingCards 256x356.png" id="2_n3ntd"]
+[ext_resource type="Texture2D" uid="uid://u2wx4qjfykpb" path="res://textures/Card Backs 356x256.png" id="2_qr5l1"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tue17"]
+flip_faces = true
+size = Vector2(0.719, 1)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uavlf"]
+albedo_texture = ExtResource("2_qr5l1")
+uv1_scale = Vector3(0.25, 1, 1)
+uv1_offset = Vector3(0.75, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n3ntd"]
+size = Vector2(0.719, 1)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdfvb"]
+albedo_texture = ExtResource("2_n3ntd")
+uv1_scale = Vector3(0.0769231, 0.25, 0)
+uv1_offset = Vector3(0.0769231, 0, 0)
+
+[node name="Card3d" type="Node3D"]
+script = ExtResource("1_cdfvb")
+
+[node name="CardBack" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_tue17")
+skeleton = NodePath("../CardFront")
+surface_material_override/0 = SubResource("StandardMaterial3D_uavlf")
+
+[node name="CardFront" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_n3ntd")
+surface_material_override/0 = SubResource("StandardMaterial3D_cdfvb")

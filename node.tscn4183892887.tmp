@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwkofglpw6pb2"]
+
+[ext_resource type="Script" uid="uid://dmf36xg7t18rt" path="res://file.gd" id="1_sy5k4"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_sy5k4")
+
+[node name="ui_player_1" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="ui_player_2" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
