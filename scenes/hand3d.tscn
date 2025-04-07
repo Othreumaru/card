@@ -1,3 +1,8 @@
-[gd_scene format=3 uid="uid://d3am1m7m3dm6x"]
+[gd_scene load_steps=2 format=3 uid="uid://d3am1m7m3dm6x"]
+
+[ext_resource type="Script" uid="uid://grsisbke0kia" path="res://scripts/hand_3d.gd" id="1_tdhcw"]
 
 [node name="Hand3d" type="Node3D"]
+script = ExtResource("1_tdhcw")
+card_space_z = 0.001
+card_space_x = 0.2

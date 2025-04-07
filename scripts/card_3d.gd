@@ -1,5 +1,4 @@
-@tool
-extends Node3D
+@tool class_name Card3D extends Node3D
 
 var CARDS_COLS: int = 13
 var CARDS_ROWS: int = 4

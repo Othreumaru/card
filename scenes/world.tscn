@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5sbxmf5alid7"]
+[gd_scene load_steps=6 format=3 uid="uid://c5sbxmf5alid7"]
 
+[ext_resource type="PackedScene" uid="uid://d3am1m7m3dm6x" path="res://scenes/hand3d.tscn" id="1_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://fb4xlgxnfv3m" path="res://scenes/card3d.tscn" id="1_rwgxs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nnsk1"]
@@ -23,8 +24,26 @@ environment = SubResource("Environment_4wyf3")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Card3d" parent="." instance=ExtResource("1_rwgxs")]
-card_index = 8
-
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.923746)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.65727)
+
+[node name="Hand3d" parent="Camera3D" instance=ExtResource("1_4wyf3")]
+transform = Transform3D(1, 0, 0, 0, 0.900015, 0.43586, 0, -0.43586, 0.900015, 0, -0.907083, -1.704)
+card_space_z = 0.039
+card_space_x = 0.5
+
+[node name="Card3d" parent="Camera3D/Hand3d" instance=ExtResource("1_rwgxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)
+card_index = 9
+
+[node name="Card3d2" parent="Camera3D/Hand3d" instance=ExtResource("1_rwgxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0, 0.039)
+
+[node name="Card3d3" parent="Camera3D/Hand3d" instance=ExtResource("1_rwgxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0, 0.078)
+
+[node name="Card3d4" parent="Camera3D/Hand3d" instance=ExtResource("1_rwgxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0.117)
+
+[node name="Card3d5" parent="Camera3D/Hand3d" instance=ExtResource("1_rwgxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 0, 0.156)

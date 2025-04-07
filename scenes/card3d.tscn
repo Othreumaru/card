@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://fb4xlgxnfv3m"]
+[gd_scene load_steps=11 format=3 uid="uid://fb4xlgxnfv3m"]
 
 [ext_resource type="Script" uid="uid://s2ico5n7bgnt" path="res://scripts/card_3d.gd" id="1_cdfvb"]
-[ext_resource type="Texture2D" uid="uid://k3ekodjrfv3b" path="res://textures/PlayingCards 256x356.png" id="2_n3ntd"]
 [ext_resource type="Texture2D" uid="uid://u2wx4qjfykpb" path="res://textures/Card Backs 356x256.png" id="2_qr5l1"]
+[ext_resource type="Shader" uid="uid://biti1q83nknrk" path="res://shaders/card_outline.gdshader" id="3_tue17"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_tue17"]
 flip_faces = true
@@ -14,23 +14,51 @@ albedo_texture = ExtResource("2_qr5l1")
 uv1_scale = Vector3(0.25, 1, 1)
 uv1_offset = Vector3(0.75, 0, 0)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_n3ntd"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_uavlf"]
+flip_faces = true
 size = Vector2(0.719, 1)
 orientation = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdfvb"]
-albedo_texture = ExtResource("2_n3ntd")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_anlfb"]
+render_priority = 0
+shader = ExtResource("3_tue17")
+shader_parameter/border_width = 0.023
+shader_parameter/color = Color(0.777426, 0.117079, 0.021383, 1)
+shader_parameter/pattern = true
+shader_parameter/line_number = 100.0
+shader_parameter/line_sharpness = 2.018
+shader_parameter/pulse = false
+shader_parameter/pulse_speed = 15.0
+shader_parameter/line_movement = true
+shader_parameter/line_movement_speed = 5.0
+shader_parameter/wave = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qr5l1"]
+size = Vector2(0.719, 1)
+orientation = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tue17"]
+load_path = "res://.godot/imported/PlayingCards 256x356.png-dca4f899047bca4048bb96074b1c8931.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qr5l1"]
+albedo_texture = SubResource("CompressedTexture2D_tue17")
 uv1_scale = Vector3(0.0769231, 0.25, 0)
-uv1_offset = Vector3(0.0769231, 0, 0)
+uv1_offset = Vector3(0.615385, 0, 0)
 
 [node name="Card3d" type="Node3D"]
 script = ExtResource("1_cdfvb")
 
 [node name="CardBack" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.001)
 mesh = SubResource("PlaneMesh_tue17")
 skeleton = NodePath("../CardFront")
 surface_material_override/0 = SubResource("StandardMaterial3D_uavlf")
 
+[node name="CardOutline" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_uavlf")
+surface_material_override/0 = SubResource("ShaderMaterial_anlfb")
+
 [node name="CardFront" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_n3ntd")
-surface_material_override/0 = SubResource("StandardMaterial3D_cdfvb")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.001)
+mesh = SubResource("PlaneMesh_qr5l1")
+surface_material_override/0 = SubResource("StandardMaterial3D_qr5l1")
